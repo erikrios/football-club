@@ -15,8 +15,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", '"https://www.thesportdb.com/"')
-        buildConfigField("String", "TSDB_API_KEY", '"1"')
+        buildConfigField "String", "BASE_URL", "\"https://www.thesportdb.com/\""
+        buildConfigField "String", "TSDB_API_KEY", "\"1\""
     }
     buildTypes {
         release {
