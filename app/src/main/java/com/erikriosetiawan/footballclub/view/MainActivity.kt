@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.erikriosetiawan.footballclub.R.array.league
 import com.erikriosetiawan.footballclub.R.color.colorAccent
 import com.erikriosetiawan.footballclub.adapter.MainAdapter
 import com.erikriosetiawan.footballclub.api.ApiRepository
@@ -15,10 +16,8 @@ import com.erikriosetiawan.footballclub.presenter.MainPresenter
 import com.google.gson.Gson
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import com.erikriosetiawan.footballclub.R.array.league
 import org.jetbrains.anko.support.v4.onRefresh
-import java.io.File
+import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class MainActivity : AppCompatActivity(), MainView {
 
