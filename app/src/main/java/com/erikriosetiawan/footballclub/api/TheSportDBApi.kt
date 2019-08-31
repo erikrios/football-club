@@ -5,7 +5,7 @@ import com.erikriosetiawan.footballclub.BuildConfig
 
 object TheSportDBApi {
     fun getTeams(league: String?): String {
-//        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?1=" + league
+//        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
         // other ways
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
             .appendPath("api")
