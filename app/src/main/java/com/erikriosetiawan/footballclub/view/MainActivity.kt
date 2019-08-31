@@ -1,4 +1,4 @@
-package com.erikriosetiawan.footballclub
+package com.erikriosetiawan.footballclub.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.erikriosetiawan.footballclub
+package com.erikriosetiawan.footballclub.model
 
 import com.google.gson.annotations.SerializedName
 

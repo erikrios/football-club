@@ -1,4 +1,4 @@
-package com.erikriosetiawan.footballclub
+package com.erikriosetiawan.footballclub.api
 
 import java.net.URL
 
