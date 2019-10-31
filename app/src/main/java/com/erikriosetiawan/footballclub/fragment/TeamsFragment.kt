@@ -16,6 +16,7 @@ import com.erikriosetiawan.footballclub.adapter.TeamsAdapter
 import com.erikriosetiawan.footballclub.api.ApiRepository
 import com.erikriosetiawan.footballclub.model.Team
 import com.erikriosetiawan.footballclub.presenter.TeamsPresenter
+import com.erikriosetiawan.footballclub.view.TeamDetailActivity
 import com.erikriosetiawan.footballclub.view.TeamsView
 import com.erikriosetiawan.footballclub.view.invisible
 import com.erikriosetiawan.footballclub.view.visible
@@ -58,7 +59,9 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         )
         spinner.adapter = spinnerAdapter
 
-        adapter = TeamsAdapter(teams)
+        adapter = TeamsAdapter(teams) {
+            context?.startActivity<TeamDetailActivity>("id" to "${it.teamId}")
+        }
         listTeam.adapter = adapter
 
         val request = ApiRepository()
