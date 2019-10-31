@@ -3,13 +3,13 @@ package com.erikriosetiawan.footballclub.presenter
 import com.erikriosetiawan.footballclub.api.ApiRepository
 import com.erikriosetiawan.footballclub.api.TheSportDBApi
 import com.erikriosetiawan.footballclub.model.TeamResponse
-import com.erikriosetiawan.footballclub.view.MainView
+import com.erikriosetiawan.footballclub.view.TeamsView
 import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(
-    private val view: MainView,
+class TeamsPresenter(
+    private val view: TeamsView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ) {
