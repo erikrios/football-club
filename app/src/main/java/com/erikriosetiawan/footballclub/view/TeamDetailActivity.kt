@@ -1,8 +1,11 @@
 package com.erikriosetiawan.footballclub.view
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -12,11 +15,15 @@ import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.erikriosetiawan.footballclub.R
 import com.erikriosetiawan.footballclub.api.ApiRepository
+import com.erikriosetiawan.footballclub.db.Favorite
+import com.erikriosetiawan.footballclub.db.database
 import com.erikriosetiawan.footballclub.model.Team
 import com.erikriosetiawan.footballclub.presenter.TeamDetailPresenter
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
@@ -34,6 +41,9 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     private lateinit var presenter: TeamDetailPresenter
     private lateinit var teams: Team
     private lateinit var id: String
+
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,5 +138,41 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         teamDescription.text = data[0].teamDescription
         teamFormedYear.text = data[0].teamFormedYear
         teamStadium.text = data[0].teamStadium
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.home -> {
+                finish()
+                true
+            }
+            R.id.add_to_favorite -> {
+                addToFavorite()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(
+                    Favorite.TABLE_FAVORITE,
+                    Favorite.TEAM_ID to teams.teamId,
+                    Favorite.TEAM_NAME to teams.teamName,
+                    Favorite.TEAM_BADGE to teams.teamBadge
+                )
+            }
+            swipeRefresh.snackbar("Added to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            swipeRefresh.snackbar(e.localizedMessage).show()
+        }
     }
 }
